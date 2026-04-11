@@ -6,7 +6,10 @@
     "module": "Preserve",
     "moduleDetection": "force",
     "allowJs": true,
-
+   
+    "paths": {
+      "@workspace/db/*": ["../../packages/db/client/*"]
+    },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
