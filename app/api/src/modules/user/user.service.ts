@@ -1,5 +1,5 @@
-import { UserRepository } from "./user.repository";
-import { UserCreationDTO } from "./user.types";
+import { UserRepository } from "@workspace/api/modules/user/user.repository";
+import { UserCreationDTO } from "@workspace/api/modules/user/user.types";
 
 export class UserService {
     private repo = new UserRepository();

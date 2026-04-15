@@ -1,11 +1,12 @@
 import app from "./app";
+import { ApiError } from "./utils/error";
 
 const PORT = process.env.PORT;
 
 function start() {
     try {
         if(!PORT) {
-            throw new Error("Port not defined")
+            throw new ApiError(400, "Port not defined")
         }
 
         app.listen(PORT, ()=> {

@@ -6,7 +6,7 @@ datasource db {
    provider = "postgresql"
 }
 
-enum Activity {
+enum Status {
    APPROVED
    FAILED
 }
@@ -17,14 +17,41 @@ enum Role {
    Analyst
 }
 
+enum Approval {
+   APPROVED
+   REJECT
+   PENDING
+}
+
 model User {
-   id       String    @id @default(cuid())
-   email    String    @unique
+   id       String @id @default(cuid())
+   email    String @unique
    name     String
    password String
-   role     Role?
-   admin    Admin?
-   customer Customer?
+
+   role      Role?
+   admin     Admin?
+   customer  Customer?
+   analyst   Analyst?
+   ticket    Ticket?
+   isDeleted Boolean   @default(false)
+
+   updatedAt DateTime @updatedAt()
+   createdAt DateTime @default(now())
+}
+
+model Ticket {
+   id     String @id @default(cuid())
+   role   Role   @default(Customer)
+   status Status @default(FAILED)
+
+   userId String @unique
+   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+   isApproved Approval  @default(PENDING)
+   isStaff    Boolean  @default(false)
+   createdAt  DateTime @default(now())
+   updatedAt  DateTime @updatedAt()
 }
 
 model Admin {
@@ -32,6 +59,18 @@ model Admin {
 
    userId String @unique
    user   User   @relation(fields: [userId], references: [id])
+
+   createdAt DateTime @default(now())
+}
+
+model Analyst {
+   id String @id @default(cuid())
+
+   userId String @unique
+   user   User   @relation(fields: [userId], references: [id])
+
+   createdAt  DateTime @default(now())
+   isCustomer Boolean
 }
 
 model Customer {
@@ -40,13 +79,13 @@ model Customer {
    userId String @unique
    user   User   @relation(fields: [userId], references: [id])
 
-   bankAccountId String       @unique
-   bankAccount   BankAccount?
+   bankAccount BankAccount?
+   flag        Boolean      @default(false)
 }
 
 model BankAccount {
    id                String @id @default(cuid())
-   backAccountNumber String @unique
+   bankAccountNumber Int    @unique
 
    customerId String   @unique
    customer   Customer @relation(fields: [customerId], references: [id])
@@ -55,12 +94,16 @@ model BankAccount {
 }
 
 model Transaction {
-   id         String   @id @default(cuid())
+   id         String @id @default(cuid())
    funds      Int
    senderId   String
    receiverId String
-   activity   Activity @default(FAILED)
+   status     Status @default(FAILED)
 
    bankAccountId String
    bankAccount   BankAccount @relation(fields: [bankAccountId], references: [id])
+
+   date DateTime @default(now())
+
+   @@index([senderId])
 }
