@@ -16,7 +16,7 @@ export class TransactionRepository {
          },
 
          data: {
-            activity: data.activity,
+            status: data.activity,
          },
       });
    }

@@ -1,3 +1,4 @@
+import { ApiError } from "@workspace/api/utils/error";
 import { client } from "@workspace/db/client";
 
 export class UserRepository {
@@ -17,5 +18,15 @@ export class UserRepository {
             email
          }
       })
+   }
+
+   async getUserById(userId: string) {
+      const user = await client.user.findUnique({
+         where: {id: userId}
+      })
+
+      if(!user || !user.id) throw new ApiError(404, "No user exists");
+
+      return user;
    }
 }

@@ -70,7 +70,7 @@ model Analyst {
    user   User   @relation(fields: [userId], references: [id])
 
    createdAt  DateTime @default(now())
-   isCustomer Boolean
+   isCustomer Boolean @default(false)
 }
 
 model Customer {
