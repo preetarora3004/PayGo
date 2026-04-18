@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from '@prisma/adapter-pg'
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
@@ -6,7 +6,7 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 const url = process.env.DATABASE_URL;
 
 if (!url) {
-    throw new Error("DATABASE_URL is missing");
+    throw new ErrorEvent("DATABASE_URL is missing");
 }
 
 export const client =

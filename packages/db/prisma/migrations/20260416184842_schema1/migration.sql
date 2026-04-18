@@ -49,7 +49,7 @@ CREATE TABLE "Analyst" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "isCustomer" BOOLEAN NOT NULL,
+    "isCustomer" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Analyst_pkey" PRIMARY KEY ("id")
 );

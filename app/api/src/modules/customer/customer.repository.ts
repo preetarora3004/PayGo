@@ -17,5 +17,14 @@ export class CustomerRepository {
                 userId
             }
         })
-    } 
+    }
+
+   async deleteCustomer(userId: string) {
+      return await client.customer.delete({
+         where: {userId},
+         select: {
+            id: true
+         }
+      })
+   }
 }

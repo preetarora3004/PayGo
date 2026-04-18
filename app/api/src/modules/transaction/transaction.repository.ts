@@ -1,10 +1,10 @@
 import { client } from "@workspace/db/client";
 
 export class TransactionRepository {
-   async getTransaction(data: { senderId: string }) {
+   async getTransaction(customerId: string) {
       return await client.transaction.findMany({
          where: {
-            senderId: data.senderId,
+            senderId: customerId,
          },
       });
    }

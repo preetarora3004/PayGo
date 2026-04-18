@@ -9,6 +9,7 @@ datasource db {
 enum Status {
    APPROVED
    FAILED
+   PENDING
 }
 
 enum Role {
@@ -48,7 +49,7 @@ model Ticket {
    userId String @unique
    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-   isApproved Approval  @default(PENDING)
+   isApproved Approval @default(PENDING)
    isStaff    Boolean  @default(false)
    createdAt  DateTime @default(now())
    updatedAt  DateTime @updatedAt()
@@ -70,7 +71,7 @@ model Analyst {
    user   User   @relation(fields: [userId], references: [id])
 
    createdAt  DateTime @default(now())
-   isCustomer Boolean @default(false)
+   isCustomer Boolean  @default(false)
 }
 
 model Customer {
@@ -86,6 +87,7 @@ model Customer {
 model BankAccount {
    id                String @id @default(cuid())
    bankAccountNumber Int    @unique
+   funds             Int    @default(5000)
 
    customerId String   @unique
    customer   Customer @relation(fields: [customerId], references: [id])
@@ -100,8 +102,8 @@ model Transaction {
    receiverId String
    status     Status @default(FAILED)
 
-   bankAccountId String
-   bankAccount   BankAccount @relation(fields: [bankAccountId], references: [id])
+   bankAccountNumber Int
+   bankAccount       BankAccount @relation(fields: [bankAccountNumber], references: [bankAccountNumber])
 
    date DateTime @default(now())
 

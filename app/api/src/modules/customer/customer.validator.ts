@@ -4,3 +4,10 @@ export const customerCreationValidator = z.object({
     userId: z.string(),
     flag: z.boolean().default(false)
 })
+
+export const transactionCreationValidator = z.object({
+   bankAccountNumber: z.number(),
+   senderId: z.string(),
+   recieverId: z.string(),
+   funds: z.number()
+})

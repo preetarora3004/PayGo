@@ -1,12 +1,17 @@
 import { client } from "@workspace/db/client";
+import { CustomerRepository } from "../customer/customer.repository";
 import { UserRepository } from "../user/user.repository";
 import { ApiError } from "@workspace/api/utils/error";
+import { TransactionRepository } from "../transaction/transaction.repository";
 import { Prisma } from "@prisma/client";
+import { ApproveCustomerDTO } from "./admin.types";
 
 export class AdminService {
+   private repoTransaction = new TransactionRepository();
    private repoUser = new UserRepository();
+   private repoCustomer = new CustomerRepository();
 
-   async approveCustomerRequest(data: { senderId: string; role: "Customer" }) {
+   async approveCustomerRequest(data: ApproveCustomerDTO) {
       const isUser = await this.repoUser.getUserById(data.senderId);
 
       switch (isUser.role) {
@@ -19,6 +24,22 @@ export class AdminService {
          default:
             throw new ApiError(404, "Not a valid ticket");
       }
+   }
+
+   async getAllTransaction(customerId: string) {
+      const transaction = await this.repoTransaction.getTransaction(customerId);
+
+      if (!transaction.length) {
+         throw new ApiError(404, "Transaction not found");
+      }
+      return transaction;
+   }
+
+   async deleteCustomer(userId: string) {
+      const deletedData = await this.repoCustomer.deleteCustomer(userId);
+      if (!deletedData.id) throw new ApiError(404, "Customer not found");
+
+      return true;
    }
 
    private async handleNewUser(
