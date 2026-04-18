@@ -1,6 +1,7 @@
 import { authMiddleware } from "@workspace/api/middlewares/auth.middleware";
 import { CustomerController } from "./customer.controller";
 import { Router } from "express";
+import { asyncHandler } from "@workspace/api/utils/asyncWrapper";
 
 const router = Router();
 const controller = new CustomerController();
@@ -8,12 +9,12 @@ const controller = new CustomerController();
 router.get(
    "/get-customer/:userId",
    authMiddleware,
-   controller.getCustomerByUserId,
+   asyncHandler(controller.getCustomerByUserId),
 );
 router.post(
-   "/:senderId/:recieverId",
+   "transaction/:senderId/:recieverId",
    authMiddleware,
-   controller.transaction
+   asyncHandler(controller.transaction),
 );
 
 export default router;

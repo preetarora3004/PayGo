@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { UserController } from "./user.controller";
-import { asyncHander } from "@workspace/api/utils/asyncWrapper";
+import { asyncHandler } from "@workspace/api/utils/asyncWrapper";
 
 const router = Router();
 const controller = new UserController();
 
-router.post("/signup", asyncHander(controller.createUser));
-router.post("/signin", asyncHander(controller.getUser));
+router.post("/signup", asyncHandler(controller.createUser));
+router.post("/signin", asyncHandler(controller.getUser));
 
 export default router;

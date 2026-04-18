@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { AdminService } from "./admin.service";
-import { AdminUtility } from "./admin.utility";
+import { Utility } from "../../utils/utility";
 import { ApiError } from "@workspace/api/utils/error";
 import { approveCustomerValidator } from "./admin.validator";
 
 const service = new AdminService();
-const utility = new AdminUtility();
+const utility = new Utility();
 
 export class AdminController {
    async approveCustomer(req: Request, res: Response, _: NextFunction) {
