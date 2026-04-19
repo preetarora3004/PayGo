@@ -1,5 +1,5 @@
 {
-   "name": "api",
+   "name": "@workspace/api",
    "module": "index.ts",
    "type": "module",
    "private": true,
@@ -10,11 +10,11 @@
       "@types/bun": "latest",
       "@types/cors": "^2.8.19",
       "@types/express": "^5.0.6",
-      "@types/jsonwebtoken": "^9.0.10"
+      "@types/jsonwebtoken": "^9.0.10",
+      "prisma": "^7.7.0"
    },
    "peerDependencies": {
-      "typescript": "^5",
-      "prisma": "^7.7.0"
+      "typescript": "^5"
    },
    "dependencies": {
       "@types/bcrypt": "^6.0.0",

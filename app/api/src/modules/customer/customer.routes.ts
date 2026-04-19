@@ -12,7 +12,7 @@ router.get(
    asyncHandler(controller.getCustomerByUserId),
 );
 router.post(
-   "transaction/:senderId/:recieverId",
+   "/transaction/:senderId/:recieverId",
    authMiddleware,
    asyncHandler(controller.transaction),
 );

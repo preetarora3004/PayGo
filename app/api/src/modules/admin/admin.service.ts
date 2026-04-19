@@ -3,20 +3,29 @@ import { CustomerRepository } from "../customer/customer.repository";
 import { UserRepository } from "../user/user.repository";
 import { ApiError } from "@workspace/api/utils/error";
 import { TransactionRepository } from "../transaction/transaction.repository";
-import { Prisma } from "@prisma/client";
 import { ApproveCustomerDTO } from "./admin.types";
+import { Prisma } from "@prisma/client";
+import { AdminRepository } from "./admin.repository";
 
 export class AdminService {
    private repoTransaction = new TransactionRepository();
    private repoUser = new UserRepository();
    private repoCustomer = new CustomerRepository();
+   private repoAdmin = new AdminRepository();
 
+   async createAdmin(data: {
+      email: string,
+      password: string,
+      name: string
+   }) {
+      return await this.repoAdmin.create(data);
+   }
    async approveCustomerRequest(data: ApproveCustomerDTO) {
       const isUser = await this.repoUser.getUserById(data.senderId);
 
       switch (isUser.role) {
-         case null:
-            return this.handleNewUser(data.senderId, data.role);
+         case "Customer":
+            return this.handleNewUser(data.senderId, isUser.role);
 
          case "Analyst":
             return this.handleAnalyst(data.senderId);
@@ -96,7 +105,7 @@ export class AdminService {
    }
 
    private generateBankAccountNumber() {
-      return Date.now() + Math.random();
+      return Date.now() + Math.floor(Math.random() * 10);
    }
 
    private async runTransaction(

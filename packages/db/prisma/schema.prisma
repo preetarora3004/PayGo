@@ -30,7 +30,7 @@ model User {
    name     String
    password String
 
-   role      Role?
+   role      Role
    admin     Admin?
    customer  Customer?
    analyst   Analyst?
@@ -86,7 +86,7 @@ model Customer {
 
 model BankAccount {
    id                String @id @default(cuid())
-   bankAccountNumber Int    @unique
+   bankAccountNumber BigInt @unique
    funds             Int    @default(5000)
 
    customerId String   @unique
@@ -102,7 +102,7 @@ model Transaction {
    receiverId String
    status     Status @default(FAILED)
 
-   bankAccountNumber Int
+   bankAccountNumber BigInt
    bankAccount       BankAccount @relation(fields: [bankAccountNumber], references: [bankAccountNumber])
 
    date DateTime @default(now())

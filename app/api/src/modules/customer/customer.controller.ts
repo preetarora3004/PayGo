@@ -27,9 +27,9 @@ export class CustomerController {
    }
 
    async transaction(req: Request, res: Response, next: NextFunction) {
-      const senderId = req.params.senderId;
-      const recieverId = req.params.recieverId;
-
+      const senderId = req.params.senderId as string;
+      const recieverId = req.params.recieverId as string;
+      console.log({...req.body, senderId, recieverId})
       const parsed = utility.parse(
          {
             ...req.body,

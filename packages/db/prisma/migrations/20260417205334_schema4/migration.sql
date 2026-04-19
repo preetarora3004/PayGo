@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "BankAccount" ADD COLUMN     "funds" INTEGER NOT NULL DEFAULT 5000;

@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Status" AS ENUM ('APPROVED', 'FAILED');
+CREATE TYPE "Status" AS ENUM ('APPROVED', 'FAILED', 'PENDING');
 
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('Customer', 'Admin', 'Analyst');
@@ -13,7 +13,7 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "Role",
+    "role" "Role" NOT NULL,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -66,7 +66,8 @@ CREATE TABLE "Customer" (
 -- CreateTable
 CREATE TABLE "BankAccount" (
     "id" TEXT NOT NULL,
-    "bankAccountNumber" INTEGER NOT NULL,
+    "bankAccountNumber" BIGINT NOT NULL,
+    "funds" INTEGER NOT NULL DEFAULT 5000,
     "customerId" TEXT NOT NULL,
 
     CONSTRAINT "BankAccount_pkey" PRIMARY KEY ("id")
@@ -79,7 +80,7 @@ CREATE TABLE "Transaction" (
     "senderId" TEXT NOT NULL,
     "receiverId" TEXT NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'FAILED',
-    "bankAccountId" TEXT NOT NULL,
+    "bankAccountNumber" BIGINT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
@@ -125,4 +126,4 @@ ALTER TABLE "Customer" ADD CONSTRAINT "Customer_userId_fkey" FOREIGN KEY ("userI
 ALTER TABLE "BankAccount" ADD CONSTRAINT "BankAccount_customerId_fkey" FOREIGN KEY ("customerId") REFERENCES "Customer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_bankAccountId_fkey" FOREIGN KEY ("bankAccountId") REFERENCES "BankAccount"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Transaction" ADD CONSTRAINT "Transaction_bankAccountNumber_fkey" FOREIGN KEY ("bankAccountNumber") REFERENCES "BankAccount"("bankAccountNumber") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -19,7 +19,7 @@ export class TicketRepository {
       return await client.ticket.findMany({
          where: {
             isStaff: {
-               not: false,
+               equals: false,
             },
          },
       });

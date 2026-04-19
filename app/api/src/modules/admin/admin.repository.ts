@@ -1,10 +1,16 @@
 import { client } from "@workspace/db/client";
 
 export class AdminRepository {
-   async create(userId: string) {
-      return await client.admin.create({
+   async create(data: { email: string; name: string; password: string }) {
+      return await client.user.create({
          data: {
-            userId,
+            email: data.email,
+            name: data.name,
+            password: data.password,
+            role: "Admin",
+            admin: {
+               create: {},
+            },
          },
       });
    }

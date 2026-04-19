@@ -6,7 +6,8 @@ export class UserRepository {
    async createUser(data: {
       email: string,
       name: string,
-      password: string
+      password: string,
+      role: "Customer" | "Analyst"
 
    }) {
       return await client.user.create({ data });
