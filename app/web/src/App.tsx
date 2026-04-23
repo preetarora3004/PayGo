@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import { CustomerDashboard } from "./customer/dashboard";
+import  CustomerDashboard  from "./customer/dashboard";
 function App() {
    return (
       <div>
