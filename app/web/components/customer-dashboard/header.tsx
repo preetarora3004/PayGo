@@ -2,7 +2,9 @@ import { BellIcon, CreditCard, Mail } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import { Settings } from "lucide-react";
 import { useState } from "react";
+
 export function DashboardHeader() {
+
    const [showDropdown, setShowDropdown] = useState(false);
 
    return (
@@ -17,7 +19,7 @@ export function DashboardHeader() {
 
          <div className="flex items-center gap-4">
             <button className="rounded-full p-2 group hover:bg-[#F5F0EB]">
-               <BellIcon className="h-5 w-5 relative hover:animate-[bell_0.4s_ease-in-out]" />
+               <BellIcon className="h-5 w-5 relative group-hover:animate-[bell_0.4s_ease-in-out]" />
                <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-accent" />
             </button>
 
@@ -34,7 +36,7 @@ export function DashboardHeader() {
                      PA
                   </div>
 
-                  <span className="text-xs font-medium">Preet Arora</span>
+                  <span className="hidden text-xs font-medium md:block">Preet Arora</span>
 
                   <ChevronDown
                      className={`h-4 w-4 text-muted-foreground transition-transform ${showDropdown ? "rotate-180" : ""}`}
