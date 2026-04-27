@@ -7,7 +7,7 @@ export default function BalanceCard() {
    return (
       <div className="relative bg-[#2C1810] p-6 md:p-8 rounded-2xl overflow-hidden">
          <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#3C2719]" />
-         <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-accent/5" />
+         <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-[#341F14]" />
 
          <div className="relative">
             <div className="flex items-center justify-between">
