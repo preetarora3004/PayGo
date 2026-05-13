@@ -44,7 +44,7 @@ export function DashboardHeader() {
                </button>
 
                {showDropdown && (
-                  <div className="absolute right-0 rounded-lg border border-[#D6CABC] top-full mt-2 w-72 p-4 z-50 bg-[#FFFFFF]">
+                  <div className="absolute right-0 rounded-lg top-full border border-[#D6CABC] mt-2 w-72 p-4 z-50 bg-[#FFFFFF]">
                      <div className="space-y-2">
                         <div className="pb-3 border-b border-[#D6CABC]">
                            <p className="text-sm font-semibold ">Preet Arora</p>

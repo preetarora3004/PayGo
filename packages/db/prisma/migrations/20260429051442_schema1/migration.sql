@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Status" AS ENUM ('APPROVED', 'FAILED', 'PENDING');
+CREATE TYPE "Status" AS ENUM ('DEBIT', 'FAILED', 'CREDIT', 'PENDING');
 
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('Customer', 'Admin', 'Analyst');
@@ -25,7 +25,6 @@ CREATE TABLE "User" (
 CREATE TABLE "Ticket" (
     "id" TEXT NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'Customer',
-    "status" "Status" NOT NULL DEFAULT 'FAILED',
     "userId" TEXT NOT NULL,
     "isApproved" "Approval" NOT NULL DEFAULT 'PENDING',
     "isStaff" BOOLEAN NOT NULL DEFAULT false,
@@ -77,9 +76,11 @@ CREATE TABLE "BankAccount" (
 CREATE TABLE "Transaction" (
     "id" TEXT NOT NULL,
     "funds" INTEGER NOT NULL,
+    "recieverName" TEXT,
+    "senderName" TEXT,
     "senderId" TEXT NOT NULL,
     "receiverId" TEXT NOT NULL,
-    "status" "Status" NOT NULL DEFAULT 'FAILED',
+    "status" "Status" NOT NULL DEFAULT 'PENDING',
     "bankAccountNumber" BIGINT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

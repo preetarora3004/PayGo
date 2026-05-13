@@ -3,19 +3,17 @@ import { AdminService } from "./admin.service";
 import { Utility } from "../../utils/utility";
 import { ApiError } from "@workspace/api/utils/error";
 import { approveCustomerValidator } from "./admin.validator";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 const service = new AdminService();
 const utility = new Utility();
 
 export class AdminController {
    async createAdmin(req: Request, res: Response, next: NextFunction) {
-     
-      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const admin = await service.createAdmin({
          ...req.body,
-         password: hashedPassword
-
+         password: hashedPassword,
       });
 
       return res.status(201).json({
@@ -26,14 +24,14 @@ export class AdminController {
       });
    }
    async approveCustomer(req: Request, res: Response, _: NextFunction) {
-
       const senderId = req.params.senderId as string;
-      console.log(req.body)
-      const parsed = utility.parse({
-         ...req.body,
-         senderId
-      }, approveCustomerValidator);
-      console.log(parsed.data)
+      const parsed = utility.parse(
+         {
+            ...req.body,
+            senderId,
+         },
+         approveCustomerValidator,
+      );
 
       if (!parsed.success) throw new ApiError(409, "Invalid schema");
 
@@ -43,7 +41,7 @@ export class AdminController {
       }
 
       return res.status(201).json({
-         success: true
+         success: true,
       });
    }
 

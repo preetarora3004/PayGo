@@ -11,21 +11,21 @@ import {
 const transactions = [
   {
     id: 1,
-    name: "Netflix Subscription",
-    category: "Entertainment",
-    date: "Today, 2:30 PM",
-    amount: -15.99,
+    name: "Preet Arora",
+    category: "Sent",
+    date: "Today, 6:10 PM",
+    amount: -550.0,
     icon: Monitor,
     iconBg: "bg-rose-50",
     iconColor: "text-rose-500",
   },
   {
     id: 2,
-    name: "Sarah Miller",
-    category: "Received",
+    name: "Nikhil Sisodia",
+    category: "Sent",
     date: "Today, 11:15 AM",
-    amount: 250.0,
-    icon: ArrowDownLeft,
+    amount: -550.0,
+    icon: ArrowUpRight,
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-500",
   },
@@ -51,7 +51,7 @@ const transactions = [
   },
   {
     id: 5,
-    name: "Alex Johnson",
+    name: "Harmindar Singh",
     category: "Sent",
     date: "Apr 20, 3:20 PM",
     amount: -120.0,
@@ -61,7 +61,7 @@ const transactions = [
   },
   {
     id: 6,
-    name: "Amazon Order",
+    name: "Sugreev Paaji",
     category: "Shopping",
     date: "Apr 20, 1:00 PM",
     amount: -47.99,
@@ -71,7 +71,7 @@ const transactions = [
   },
   {
     id: 7,
-    name: "Michael Chen",
+    name: "Michael Sharma",
     category: "Received",
     date: "Apr 19, 6:30 PM",
     amount: 85.0,
@@ -112,7 +112,7 @@ export default function RecentTransactions() {
               className="group flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-[#F9F6F2] cursor-pointer"
             >
               <div
-                className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${tx.iconBg}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${tx.iconBg}`}
               >
                 <Icon className={`h-4.5 w-4.5 ${tx.iconColor}`} />
               </div>

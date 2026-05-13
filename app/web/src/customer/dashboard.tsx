@@ -2,6 +2,7 @@ import { DashboardHeader } from "../../components/customer-dashboard/header";
 import BalanceCard from "../../components/customer-dashboard/balanceCard";
 import RecentTransactions from "../../components/customer-dashboard/recent-transaction";
 import QRScanner from "../../components/customer-dashboard/qr-scanner";
+import { PayByEmail } from "../../components/customer-dashboard/pay-by-email";
 
 export default function CustomerDashboard() {
    return (
@@ -18,6 +19,7 @@ export default function CustomerDashboard() {
 
                   <div className="space-y-5 md:col-span-4">
                     <QRScanner/>  
+                    <PayByEmail />
                   </div>
                </div>
             </div>

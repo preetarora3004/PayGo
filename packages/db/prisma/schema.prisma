@@ -7,8 +7,9 @@ datasource db {
 }
 
 enum Status {
-   APPROVED
+   DEBIT
    FAILED
+   CREDIT
    PENDING
 }
 
@@ -42,9 +43,8 @@ model User {
 }
 
 model Ticket {
-   id     String @id @default(cuid())
-   role   Role   @default(Customer)
-   status Status @default(FAILED)
+   id   String @id @default(cuid())
+   role Role   @default(Customer)
 
    userId String @unique
    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -96,11 +96,14 @@ model BankAccount {
 }
 
 model Transaction {
-   id         String @id @default(cuid())
-   funds      Int
-   senderId   String
-   receiverId String
-   status     Status @default(FAILED)
+   id           String  @id @default(cuid())
+   funds        Int
+   recieverName String?
+   senderName   String?
+   senderId     String
+   receiverId   String
+   description  String?
+   status       Status  @default(PENDING)
 
    bankAccountNumber BigInt
    bankAccount       BankAccount @relation(fields: [bankAccountNumber], references: [bankAccountNumber])

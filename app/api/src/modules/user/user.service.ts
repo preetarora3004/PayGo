@@ -23,7 +23,7 @@ export class UserService {
             role: data.role,
             ticket: {
                create: {
-                  status: "PENDING",
+                  isApproved: "PENDING",
                },
             },
          },

@@ -7,6 +7,8 @@ export const customerCreationValidator = z.object({
 
 export const transactionCreationValidator = z.object({
    bankAccountNumber: z.number(),
+   recieverName: z.string(),
+   senderName: z.string(),
    senderId: z.string(),
    recieverId: z.string(),
    funds: z.number()

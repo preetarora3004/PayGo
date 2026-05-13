@@ -14,7 +14,6 @@ export class UserController {
    async createUser(req: Request, res: Response) {
       const parsed = userDTOValidator.safeParse(req.body);
       
-      console.log(req.body)
       if (!parsed.success) {
          throw new ApiError(409, "Invalid schema");
       }

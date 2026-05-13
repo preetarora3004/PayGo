@@ -16,7 +16,7 @@ router.post(
 
 router.post(
    "/create-admin",
-   authMiddleware,
+//   authMiddleware,
    asyncHandler(controller.createAdmin),
 );
 

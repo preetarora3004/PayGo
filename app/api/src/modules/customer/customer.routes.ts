@@ -8,7 +8,7 @@ const controller = new CustomerController();
 
 router.get(
    "/get-customer/:userId",
-   authMiddleware,
+   // authMiddleware,
    asyncHandler(controller.getCustomerByUserId),
 );
 router.post(

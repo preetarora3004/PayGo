@@ -9,7 +9,7 @@ export class TransactionRepository {
       });
    }
 
-   async editTransaction(data: { id: string; activity: "FAILED" | "APPROVED" }) {
+   async editTransaction(data: { id: string; activity: "FAILED" | "DEBIT" }) {
       return await client.transaction.update({
          where: {
             id: data.id,

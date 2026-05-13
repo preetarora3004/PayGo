@@ -27,7 +27,7 @@ export default function BalanceCard() {
             </div>
 
             <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl text-[#FAFAF8]">
-               {showBalance ? "₹23,459.43" : "*******"}
+               {showBalance ? "₹4,43,459.43" : "*******"}
             </h2>
 
             <div className="mt-6 flex items-center gap-3">

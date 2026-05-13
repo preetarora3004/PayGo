@@ -48,7 +48,7 @@ export default function QRScanner() {
                </p>
                <button
                   onClick={handleCopy}
-                  className="mt-1 gap-1.5 text-xs text-accent hover:text-accent/80"
+                  className="mt-1 gap-1.5 text-xs text-accent flex items-center justify-center hover:text-accent/80"
                >
                   {copied ? (
                      <>
@@ -66,7 +66,6 @@ export default function QRScanner() {
                <div className="relative flex h-[172px] w-[172px] items-center justify-center rounded-2xl bg-[#F4F3F3] border-2 border-dashed border-[#D6CABC]">
                   <ScanLine className="h-12 w-12 text-[#CAAB71] animate-pulse" />
                   <div className="absolute inset-4 rounded-lg border-2 border-[#E7DCCB]" />
-                  {/* Corner markers */}
                   <div className="absolute left-3 top-3 h-4 w-4 rounded-tl-md border-l-2 border-t-2 border-[#C9A96E]" />
                   <div className="absolute right-3 top-3 h-4 w-4 rounded-tr-md border-r-2 border-t-2 border-[#C9A96E]" />
                   <div className="absolute bottom-3 left-3 h-4 w-4 rounded-bl-md border-b-2 border-l-2 border-[#C9A96E]" />
@@ -84,7 +83,6 @@ export default function QRScanner() {
             </div>
          )}
 
-         {/* Camera Scanning Modal */}
          {showCameraModal && (
             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
                <div className="bg-[#FFFFFF] rounded-2xl shadow-xl w-full max-w-md p-6">

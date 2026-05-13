@@ -4,8 +4,8 @@ import { UserRepository } from "../user/user.repository";
 import { ApiError } from "@workspace/api/utils/error";
 import { TransactionRepository } from "../transaction/transaction.repository";
 import { ApproveCustomerDTO } from "./admin.types";
-import { Prisma } from "@prisma/client";
 import { AdminRepository } from "./admin.repository";
+import { Prisma } from "@prisma/client";
 
 export class AdminService {
    private repoTransaction = new TransactionRepository();
@@ -13,11 +13,7 @@ export class AdminService {
    private repoCustomer = new CustomerRepository();
    private repoAdmin = new AdminRepository();
 
-   async createAdmin(data: {
-      email: string,
-      password: string,
-      name: string
-   }) {
+   async createAdmin(data: { email: string; password: string; name: string }) {
       return await this.repoAdmin.create(data);
    }
    async approveCustomerRequest(data: ApproveCustomerDTO) {
@@ -37,7 +33,7 @@ export class AdminService {
 
    async getAllTransaction(customerId: string) {
       const transaction = await this.repoTransaction.getTransaction(customerId);
-
+      
       if (!transaction.length) {
          throw new ApiError(404, "Transaction not found");
       }

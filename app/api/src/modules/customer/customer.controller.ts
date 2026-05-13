@@ -9,7 +9,7 @@ const utility = new Utility();
 
 export class CustomerController {
    async getCustomerByUserId(req: Request, res: Response, next: NextFunction) {
-      const userId = req.user?.id;
+      const userId = req.params.userId as string;
 
       if (!userId) {
          throw new ApiError(400, "Invalid schema");
@@ -29,7 +29,6 @@ export class CustomerController {
    async transaction(req: Request, res: Response, next: NextFunction) {
       const senderId = req.params.senderId as string;
       const recieverId = req.params.recieverId as string;
-      console.log({...req.body, senderId, recieverId})
       const parsed = utility.parse(
          {
             ...req.body,
@@ -41,10 +40,11 @@ export class CustomerController {
 
       if (!parsed.success) throw new ApiError(409, "Invalid details");
 
-      const approved = service.transaction(parsed.data);
-
+      const approved = await service.transaction(parsed.data);
+      
       return res.status(201).json({
-         success: approved,
+         success: true,
       });
    }
 }
+
